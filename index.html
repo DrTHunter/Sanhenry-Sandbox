@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Permissions-Policy" content="autoplay=()">
+    <title>Find Your Dream Home in San Antonio | Sanhenry Garcia Jr. Real Estate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2a5b84;
+            --primary-light: #3a7bb8;
+            --secondary: #e8a628;
+            --dark: #333333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            padding: 10px 0;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+        
+        .logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            z-index: 101;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--primary-light);
+            color: white;
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .hero-buttons .cta-button {
+            font-size: 1.1rem;
+            padding: 12px 25px;
+        }
+        
+        .secondary-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .secondary-button:hover {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        /* Listings Section */
+        .listings {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .embedded-website {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .embedded-website .cta-button {
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            display: inline-block;
+            margin: 20px 0;
+            text-decoration: none;
+        }
+
+        /* Why Choose Me */
+        .why-choose {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Homebuyer Guide */
+        .guide {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .guide-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .guide-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .guide-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .guide-content {
+            flex: 1;
+        }
+        
+        .guide-content h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .guide-list {
+            margin-bottom: 30px;
+        }
+        
+        .guide-list li {
+            margin-bottom: 15px;
+            list-style-type: none;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .guide-list li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+        }
+        
+        /* Mortgage Calculator */
+        .calculator {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .calculator-container {
+            display: flex;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .calculator-form {
+            flex: 1;
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .calculator-results {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        #calculate-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .result-card {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .result-card h3 {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .result-amount {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .result-breakdown {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .result-breakdown h4 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .breakdown-item.total {
+            font-weight: 700;
+            margin-top: 10px;
+            border-top: 2px solid var(--secondary);
+            padding-top: 10px;
+            border-bottom: none;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial-text:before {
+            content: "\"";
+            font-size: 4rem;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            color: rgba(0,0,0,0.05);
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+        }
+        
+        /* Neighborhoods */
+        .neighborhoods {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .neighborhood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .neighborhood-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .neighborhood-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .neighborhood-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .neighborhood-card:hover .neighborhood-image img {
+            transform: scale(1.1);
+        }
+        
+        .neighborhood-content {
+            padding: 20px;
+            background-color: var(--white);
+        }
+        
+        .neighborhood-content h3 {
+            color: var(--primary);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-links h3 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Footer Image */
+        .footer-image {
+            width: 100%; /* Full width on mobile */
+            max-width: 400px; /* Maximum size on desktop */
+            height: auto;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Contact Modal Styles */
+        .contact-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+        
+        .close-modal:hover {
+            color: var(--dark);
+        }
+        
+        #contact-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        #contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        #contact-form input,
+        #contact-form select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        #contact-form button {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        /* Add these new styles for error messages */
+        .error-message {
+            background: #ffeeee;
+            border-left: 4px solid #ff0000;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 4px;
+            color: #d32f2f;
+            font-size: 14px;
+        }
+        .error-message i {
+            margin-right: 5px;
+        }
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .fa-spinner {
+            margin-right: 8px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 15px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 100;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .logo {
+                font-size: 16px;
+            }
+            
+            .guide-container {
+                flex-direction: column;
+            }
+            
+            .calculator-container {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .footer-image {
+                max-width: 100%; /* Full width on mobile */
+            }
+
+            .listings {
+                padding: 60px 0;
+            }
+        }
+
+        /* Make the image match the text width on desktop */
+        @media (min-width: 769px) {
+            .footer-about {
+                max-width: 400px; /* Matches the image max-width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobile-overlay"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo"><span>Sanhenry Garcia Jr.</span> Real Estate</div>
+                <button class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-links" id="nav-links">
+                    <a href="#listings">Listings</a>
+                    <a href="#about">About</a>
+                    <a href="#neighborhoods">Neighborhoods</a>
+                    <a href="#testimonials">Testimonials</a>
+                    <a href="#contact" class="cta-button">Contact</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Find Your Dream Home in San Antonio</h1>
+            <p>Your keys to the perfect home are just a click away! Searching for a home in San Antonio? I'll help you find the right fit—faster, smarter, and with less stress.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="cta-button">Start Your Search</a>
+                <a href="First Time Homebuyers Guide.docx" class="secondary-button" download>First-Time Buyer Guide</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listings Section -->
+    <section class="listings" id="listings">
+        <div class="container">
+            <div class="section-title">
+                <h2>Current Listings</h2>
+                <p>Browse all available properties in San Antonio</p>
+            </div>
+            <div class="embedded-website">
+                <a href="https://sanhenrygarcia.exprealty.com/" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="cta-button">
+                    Unlock All Features on Our Full Website
+                </a>
+                <iframe src="https://sanhenrygarcia.exprealty.com/" 
+                        style="width:100%; height:80vh; border:none;" 
+                        title="Sanhenry Garcia Real Estate Listings"
+                        allow="autoplay 'none'">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Me -->
+    <section class="why-choose" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Work With Me?</h2>
+                <p>I don't just sell houses—I help you find a home where your life happens.</p>
+            </div>
+            <div class="benefits">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <h3>Local Market Expert</h3>
+                    <p>I know San Antonio inside and out, from hidden gems to the hottest neighborhoods.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Strong Negotiator</h3>
+                    <p>I fight for your best interests to save you money and avoid overpaying.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Stress-Free Process</h3>
+                    <p>From pre-approval to closing, I'll guide you every step of the way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Homebuyer Guide -->
+    <section class="guide" id="guide">
+        <div class="container">
+            <div class="guide-container">
+                <div class="guide-image">
+                    <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Happy homeowners with keys">
+                </div>
+                <div class="guide-content">
+                    <h2>First-Time Homebuyer? Start Here</h2>
+                    <p>Buying your first home is a big deal—but it doesn't have to be confusing.</p>
+                    <ul class="guide-list">
+                        <li>Learn how much you can afford</li>
+                        <li>Understand mortgage options</li>
+                        <li>Find neighborhoods that fit your lifestyle</li>
+                        <li>Avoid common buyer mistakes</li>
+                    </ul>
+                    <p><strong>Free Download:</strong> "First-Time Homebuyer's Checklist: Your Step-by-Step Guide to Homeownership"</p>
+                    <a href="First Time Homebuyers Guide.docx" class="cta-button" download>Get Your Free Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mortgage Calculator -->
+    <section class="calculator">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mortgage Calculator</h2>
+                <p>Estimate your monthly payments and see how much home you can afford.</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="home-price">Home Price ($)</label>
+                        <input type="number" id="home-price" value="500000" min="50000" step="10000">
+                    </div>
+                    <div class="form-group">
+                        <label for="down-payment">Down Payment ($)</label>
+                        <input type="number" id="down-payment" value="100000" min="0" step="5000">
+                    </div>
+                    <div class="form-group">
+                        <label for="loan-term">Loan Term (years)</label>
+                        <select id="loan-term">
+                            <option value="30">30 years</option>
+                            <option value="20">20 years</option>
+                            <option value="15">15 years</option>
+                            <option value="10">10 years</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest-rate">Interest Rate (%)</label>
+                        <input type="number" id="interest-rate" value="5.5" min="1" max="20" step="0.125">
+                    </div>
+                    <div class="form-group">
+                        <label for="property-tax-rate">Property Tax Rate (%)</label>
+                        <input type="number" id="property-tax-rate" value="1.8" min="0.5" max="5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="insurance-rate">Home Insurance Rate (%)</label>
+                        <input type="number" id="insurance-rate" value="0.5" min="0.1" max="2" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="hoa-fee">Monthly HOA Fee ($)</label>
+                        <input type="number" id="hoa-fee" value="100" min="0" step="25">
+                    </div>
+                    <button id="calculate-btn" class="cta-button">Calculate Payment</button>
+                </div>
+                <div class="calculator-results">
+                    <div class="result-card">
+                        <h3>Monthly Payment</h3>
+                        <div class="result-amount" id="monthly-payment">$2,271</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Interest</h3>
+                        <div class="result-amount" id="total-interest">$402,407</div>
+                    </div>
+                    <div class="result-card">
+                        <h3>Total Cost</h3>
+                        <div class="result-amount" id="total-cost">$802,407</div>
+                    </div>
+                    <div class="result-breakdown">
+                        <h4>Payment Breakdown</h4>
+                        <div class="breakdown-item">
+                            <span>Principal & Interest</span>
+                            <span id="principal-interest">$2,271</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Property Tax</span>
+                            <span id="property-tax">$750</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Home Insurance</span>
+                            <span id="home-insurance">$208</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>HOA Fee</span>
+                            <span id="hoa-fee-display">$30</span>
+                        </div>
+                        <div class="breakdown-item total">
+                            <span>Total Monthly Payment</span>
+                            <span id="total-monthly">$3,329</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What My Clients Say</h2>
+                <p>Don't just take my word for it—hear from happy homeowners!</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        Working with Sanhenry Garcia was a game-changer! They found us a home we loved under budget and made the whole process easy.
+                    </div>
+                    <div class="testimonial-author">- Sarah & Mike T.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        As a first-time buyer, I had no idea what I was doing. Sanhenry Garcia explained everything, negotiated like a pro, and got us the keys in 30 days!
+                    </div>
+                    <div class="testimonial-author">- James L.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        I was about to give up on finding a home until Sanhenry stepped in. They found listings I never saw online and got my offer accepted below asking price!
+                    </div>
+                    <div class="testimonial-author">- David R.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neighborhoods -->
+    <section class="neighborhoods" id="neighborhoods">
+        <div class="container">
+            <div class="section-title">
+                <h2>Explore San Antonio's Best Neighborhoods</h2>
+                <p>Not sure where to buy? Tell me your lifestyle, and I'll match you with the perfect location.</p>
+            </div>
+            <div class="neighborhood-grid">
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">
+                        <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Family neighborhood">
+                    </div>
+                    <div class="neighborhood-content">
+                        <h3>Family-Friendly Areas</h3>
+                        <p>Great schools, parks, and community vibes perfect for raising a family.</p>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Urban neighborhood">
+                    </div>
+                    <div class="neighborhood-content">
+                        <h3>Downtown Living</h3>
+                        <p>Luxury condos and walkable urban spaces with vibrant nightlife.</p>
+                    </div>
+                </div>
+                <div class="neighborhood-card">
+                    <div class="neighborhood-image">
+                        <img src="https://images.unsplash.com/photo-1560520031-3a4dc4e9de0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Upcoming neighborhood">
+                    </div>
+                    <div class="neighborhood-content">
+                        <h3>Up-and-Coming Hotspots</h3>
+                        <p>Smart investments with high growth potential in emerging areas.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <h2>Ready to Start Your Search?</h2>
+            <p>The best homes sell fast. Let's get you ahead of the competition! I'm here to answer all your questions—no obligation, just honest help.</p>
+            <div class="hero-buttons">
+                <button id="call-now-btn" class="cta-button"><i class="fas fa-phone"></i> Call Now</button>
+                <button id="email-me-btn" class="secondary-button"><i class="fas fa-envelope"></i> Email Me</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal" id="contact-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Get in Touch</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Your Name</label>
+                    <input type="text" id="contact-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">Phone Number</label>
+                    <input type="tel" id="contact-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email Address</label>
+                    <input type="email" id="contact-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-timeline">How soon do you plan on buying?</label>
+                    <select id="contact-timeline" required>
+                        <option value="">Select timeline</option>
+                        <option value="Immediately">Immediately</option>
+                        <option value="Within 1 month">Within 1 month</option>
+                        <option value="1-3 months">1-3 months</option>
+                        <option value="3-6 months">3-6 months</option>
+                        <option value="6+ months">6+ months</option>
+                        <option value="Just browsing">Just browsing</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-button">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <img src="Sanhenry Information.jpg" alt="Sanhenry Garcia Jr. Real Estate" class="footer-image">
+                    <p>Helping you find not just a house, but a home where your life happens.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#listings">Listings</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#neighborhoods">Neighborhoods</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="First Time Homebuyers Guide.docx" download>Buyer's Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (210) 608-3275</li>
+                        <li><i class="fas fa-envelope"></i> sanhenry.garcia@exprealty.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> San Antonio, TX</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Sanhenry Garcia Real Estate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navLinks = document.getElementById('nav-links');
+            const mobileOverlay = document.getElementById('mobile-overlay');
+            
+            mobileMenu.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                mobileOverlay.classList.toggle('active');
+                // Toggle between hamburger and close icon
+                if (navLinks.classList.contains('active')) {
+                    mobileMenu.innerHTML = '<i class="fas fa-times"></i>';
+                } else {
+                    mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+            
+            // Close menu when clicking overlay
+            mobileOverlay.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+            
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('active');
+                    mobileOverlay.classList.remove('active');
+                    mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Mortgage Calculator
+            const homePriceInput = document.getElementById('home-price');
+            const downPaymentInput = document.getElementById('down-payment');
+            const loanTermSelect = document.getElementById('loan-term');
+            const interestRateInput = document.getElementById('interest-rate');
+            const propertyTaxRateInput = document.getElementById('property-tax-rate');
+            const insuranceRateInput = document.getElementById('insurance-rate');
+            const hoaFeeInput = document.getElementById('hoa-fee');
+            const calculateBtn = document.getElementById('calculate-btn');
+            
+            // Result elements
+            const monthlyPaymentEl = document.getElementById('monthly-payment');
+            const totalInterestEl = document.getElementById('total-interest');
+            const totalCostEl = document.getElementById('total-cost');
+            const principalInterestEl = document.getElementById('principal-interest');
+            const propertyTaxEl = document.getElementById('property-tax');
+            const homeInsuranceEl = document.getElementById('home-insurance');
+            const hoaFeeDisplayEl = document.getElementById('hoa-fee-display');
+            const totalMonthlyEl = document.getElementById('total-monthly');
+            
+            // Calculate mortgage on button click
+            calculateBtn.addEventListener('click', calculateMortgage);
+            
+            // Also calculate when any input changes
+            [homePriceInput, downPaymentInput, loanTermSelect, interestRateInput, 
+             propertyTaxRateInput, insuranceRateInput, hoaFeeInput].forEach(input => {
+                input.addEventListener('input', calculateMortgage);
+            });
+            
+            // Initial calculation
+            calculateMortgage();
+            
+            function calculateMortgage() {
+                // Get input values
+                const homePrice = parseFloat(homePriceInput.value) || 0;
+                const downPayment = parseFloat(downPaymentInput.value) || 0;
+                const loanTerm = parseInt(loanTermSelect.value);
+                const annualInterestRate = parseFloat(interestRateInput.value) || 0;
+                const propertyTaxRate = parseFloat(propertyTaxRateInput.value) || 0;
+                const insuranceRate = parseFloat(insuranceRateInput.value) || 0;
+                const hoaFee = parseFloat(hoaFeeInput.value) || 0;
+                
+                // Calculate loan amount
+                const loanAmount = homePrice - downPayment;
+                
+                // Monthly interest rate
+                const monthlyInterestRate = (annualInterestRate / 100) / 12;
+                
+                // Number of payments
+                const numberOfPayments = loanTerm * 12;
+                
+                // Calculate monthly payment (principal + interest)
+                const monthlyPayment = loanAmount * 
+                    (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
+                    (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+                
+                // Calculate total interest
+                const totalInterest = (monthlyPayment * numberOfPayments) - loanAmount;
+                
+                // Calculate total cost
+                const totalCost = loanAmount + totalInterest + downPayment;
+                
+                // Calculate property tax (based on home price and tax rate)
+                const propertyTax = (homePrice * (propertyTaxRate / 100)) / 12;
+                
+                // Calculate home insurance (based on home price and insurance rate)
+                const homeInsurance = (homePrice * (insuranceRate / 100)) / 12;
+                
+                // Total monthly payment
+                const totalMonthly = monthlyPayment + propertyTax + homeInsurance + hoaFee;
+                
+                // Update the UI
+                monthlyPaymentEl.textContent = formatCurrency(monthlyPayment);
+                totalInterestEl.textContent = formatCurrency(totalInterest);
+                totalCostEl.textContent = formatCurrency(totalCost);
+                principalInterestEl.textContent = formatCurrency(monthlyPayment);
+                propertyTaxEl.textContent = formatCurrency(propertyTax);
+                homeInsuranceEl.textContent = formatCurrency(homeInsurance);
+                hoaFeeDisplayEl.textContent = formatCurrency(hoaFee);
+                totalMonthlyEl.textContent = formatCurrency(totalMonthly);
+            }
+            
+            function formatCurrency(amount) {
+                return '$' + amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+            }
+
+            // Contact Modal functionality
+            const contactModal = document.getElementById('contact-modal');
+            const callNowBtn = document.getElementById('call-now-btn');
+            const emailMeBtn = document.getElementById('email-me-btn');
+            const closeModal = document.querySelector('.close-modal');
+            const contactForm = document.getElementById('contact-form');
+            
+            // Open modal for both buttons
+            callNowBtn.addEventListener('click', function() {
+                contactModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+            
+            emailMeBtn.addEventListener('click', function() {
+                contactModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+            
+            // Close modal
+            closeModal.addEventListener('click', function() {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+            
+            // Close when clicking outside modal
+            window.addEventListener('click', function(event) {
+                if (event.target === contactModal) {
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // COMPLETE FORM SUBMISSION HANDLER
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                
+                // Clear any previous errors
+                const existingErrors = document.querySelectorAll('.form-error');
+                existingErrors.forEach(error => error.remove());
+                
+                try {
+                    // Get form values
+                    const formData = {
+                        name: document.getElementById('contact-name').value.trim(),
+                        phone: document.getElementById('contact-phone').value.trim(),
+                        email: document.getElementById('contact-email').value.trim(),
+                        timeline: document.getElementById('contact-timeline').value
+                    };
+                    
+                    // Validate inputs
+                    if (!formData.name || !formData.phone || !formData.email || !formData.timeline) {
+                        throw new Error('Please fill in all required fields');
+                    }
+                    
+                    // Replace with your actual API Gateway endpoint
+                    const apiUrl = 'https://bqib7dcgzc.execute-api.us-east-2.amazonaws.com/prod/contact';
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    // Check for HTTP errors
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.message || `Server responded with status ${response.status}`);
+                    }
+                    
+                    // Parse successful response
+                    const responseData = await response.json();
+                    console.log('Form submission successful:', responseData);
+                    
+                    // Close modal and reset form
+                    contactModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    contactForm.reset();
+                    
+                    // Show success message
+                    alert('Thank you! Your information has been submitted successfully. We will contact you shortly.');
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    
+                    // Create and display error message
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'form-error';
+                    errorDiv.innerHTML = `
+                        <p style="color: #d32f2f; margin: 10px 0; padding: 10px; background: #ffeeee; border-left: 4px solid #d32f2f;">
+                            <i class="fas fa-exclamation-circle"></i> 
+                            ${error.message || 'There was an error submitting your form. Please try again or contact us directly at (210) 608-3275.'}
+                        </p>
+                    `;
+                    
+                    // Insert error message after the submit button
+                    submitBtn.insertAdjacentElement('afterend', errorDiv);
+                    
+                    // Remove error after 5 seconds
+                    setTimeout(() => {
+                        if (errorDiv.parentNode) {
+                            errorDiv.remove();
+                        }
+                    }, 5000);
+                    
+                } finally {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

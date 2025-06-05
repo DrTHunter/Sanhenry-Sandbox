@@ -276,6 +276,16 @@
           box-sizing: border-box;
           resize: vertical;
         }
+
+        /*error message*/
+                iframe[src^="https://script.google.com"] {
+          display: none !important;
+        }
+        
+        body > div[style*="color: red"] {
+          display: none !important;
+          visibility: hidden !important;
+        }
         
         /* Homebuyer Guide */
         .guide {

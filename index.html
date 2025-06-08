@@ -279,34 +279,31 @@
             margin-bottom: 15px;
         }
 
-        /* Updated Checkbox Styles */
-        .checkbox-group {
+        /*checkboxes in form*/
+        .checkbox-group.after-text {
           display: flex;
           flex-direction: column;
           gap: 8px;
+          align-items: flex-start;
         }
-
-        .checkbox-item {
+        
+        .checkbox-inline {
           display: flex;
-          align-items: center;
-          gap: 8px;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 4px 0;
+          justify-content: flex-start;
+          width: 100%;
         }
-
-        .checkbox-item input[type="checkbox"] {
-          margin: 0;
+        
+        .checkbox-inline input[type="checkbox"] {
+          margin-top: 3px;
           flex-shrink: 0;
         }
-
-        /* For the Terms of Service checkbox specifically */
-        .checkbox-group.after-text .checkbox-inline {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .checkbox-group.after-text .checkbox-inline input[type="checkbox"] {
-          margin: 0;
-          order: -1;
+        
+        .checkbox-inline span {
+          text-align: left;
+          flex-grow: 1;
         }
         
         /*Other Info/Preferences*/
@@ -1471,31 +1468,30 @@
               <label>Preferred Locations (check all that apply)</label>
                 <div class="checkbox-group">
                   <label class="checkbox-item">
-                    <input type="checkbox" name="locations" value="Downtown San Antonio">
                     Downtown San Antonio
+                    <input type="checkbox" name="locations" value="Downtown San Antonio">
                   </label>
                   <label class="checkbox-item">
-                    <input type="checkbox" name="locations" value="Alamo Heights">
                     Alamo Heights
+                    <input type="checkbox" name="locations" value="Alamo Heights">
                   </label>
                   <label class="checkbox-item">
-                    <input type="checkbox" name="locations" value="Stone Oak">
                     Stone Oak
+                    <input type="checkbox" name="locations" value="Stone Oak">
                   </label>
                   <label class="checkbox-item">
-                    <input type="checkbox" name="locations" value="The Dominion">
                     The Dominion
+                    <input type="checkbox" name="locations" value="The Dominion">
                   </label>
                   <label class="checkbox-item">
-                    <input type="checkbox" name="locations" value="Northwest San Antonio">
                     Northwest San Antonio
+                    <input type="checkbox" name="locations" value="Northwest San Antonio">
                   </label>
                   <label class="checkbox-item">
-                    <input type="checkbox" name="locations" value="Bulverde / Spring Branch">
                     Bulverde / Spring Branch
+                    <input type="checkbox" name="locations" value="Bulverde / Spring Branch">
                   </label>
                 </div>
-            </div>
     
           <div class="form-group">
             <label for="timeline">Timeline to Move</label>
@@ -1528,8 +1524,8 @@
             <div class="form-group">
               <div class="checkbox-group after-text">
                 <label class="checkbox-inline">
-                  <input type="checkbox" name="terms" required>
                   I agree to the <a href="https://www.orionhomesearch.com/Terms%20of%20Service.txt" target="_blank">Terms of Service</a>
+                  <input type="checkbox" name="terms" required>
                 </label>
               </div>
             </div>

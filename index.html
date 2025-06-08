@@ -1526,15 +1526,15 @@
             <textarea id="message" name="additional" rows="4" style="width: 100%;"></textarea>
           </div>
     
-          <!-- Updated Terms of Service checkbox -->
-          <div class="form-group">
-            <div class="checkbox-group after-text">
-              <label class="checkbox-inline">
-                <input type="checkbox" name="terms" required>
-                I agree to the <a href="https://www.orionhomesearch.com/Terms%20of%20Service.txt" target="_blank">Terms of Service</a>
-              </label>
+          <!-- Updated Terms of Service Toggle -->
+            <div class="form-group">
+              <label style="display: block; font-weight: 600;">Consent Required</label>
+              <button type="button" id="termsToggle" class="toggle-option" data-agreed="false">
+                I agree to the <a href="https://www.orionhomesearch.com/Terms%20of%20Service.txt" target="_blank" style="color: inherit; text-decoration: underline;">Terms of Service</a>
+              </button>
+              <input type="hidden" name="terms" id="termsAgreed" value="">
+              <p style="font-size: 0.8rem; margin-top: 5px;">You must agree before submitting.</p>
             </div>
-          </div>
     
           <!-- Added communication consent text -->
           <p style="font-size: 0.8rem; margin-top: -10px; margin-bottom: 10px;">
@@ -1874,12 +1874,36 @@
   });
 </script>
     
+ <script>
+      // Toggle button logic for Terms of Service
+      const termsToggle = document.getElementById('termsToggle');
+      const termsAgreed = document.getElementById('termsAgreed');
+    
+      termsToggle.addEventListener('click', () => {
+        const isAgreed = termsToggle.getAttribute('data-agreed') === 'true';
+        if (isAgreed) {
+          termsToggle.classList.remove('selected');
+          termsToggle.setAttribute('data-agreed', 'false');
+          termsAgreed.value = '';
+        } else {
+          termsToggle.classList.add('selected');
+          termsToggle.setAttribute('data-agreed', 'true');
+          termsAgreed.value = 'agreed';
+        }
+      });
+
+  // Prevent form submission unless terms are agreed
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    if (termsAgreed.value !== 'agreed') {
+      e.preventDefault();
+      alert('You must agree to the Terms of Service before submitting.');
+    }
+  });
+    <script>
+
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="RfCRY6zG0cFaXP1SpqUgu";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
     
 </body>
 </html>
-
-
-Hell Yes!!!

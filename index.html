@@ -1294,14 +1294,22 @@
         </div>
     </section>
 
-    <!-- Mortgage Calculator -->
+    <!-- Replace your existing Mortgage Calculator section with this updated version -->
     <section class="calculator">
         <div class="container">
             <div class="section-title">
-                <h2>Mortgage Calculator</h2>
-                <p>Estimate your monthly payments and see how much home you can afford.</p>
+                <h2>Financial Calculators</h2>
+                <p>Estimate your monthly payments or calculate your debt-to-income ratio.</p>
+                
+                <!-- Calculator Toggle Buttons -->
+                <div class="calculator-toggle" style="display: flex; justify-content: center; margin-bottom: 20px;">
+                    <button id="mortgage-toggle" class="cta-button" style="border-radius: 5px 0 0 5px; margin-right: 0;">Mortgage Calculator</button>
+                    <button id="dti-toggle" class="secondary-button" style="border-radius: 0 5px 5px 0; margin-left: 0;">Debt-to-Income Calculator</button>
+                </div>
             </div>
-            <div class="calculator-container">
+            
+            <!-- Mortgage Calculator (initially visible) -->
+            <div class="calculator-container" id="mortgage-calculator">
                 <div class="calculator-form">
                     <div class="form-group">
                         <label for="home-price">Home Price ($)</label>
@@ -1376,38 +1384,63 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-     <!-- Testimonials -->
-        <section class="testimonials" id="testimonials">
-            <div class="container">
-                <div class="section-title">
-                    <h2>What Clients Say About Orion</h2>
-                    <p>Don't just take my word for it—these stories came from real journeys, real humans, and real homes unlocked by AI clarity.</p>
+            
+            <!-- Debt-to-Income Calculator (initially hidden) -->
+            <div class="calculator-container" id="dti-calculator" style="display: none;">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="monthly-income">Monthly Gross Income ($)</label>
+                        <input type="number" id="monthly-income" value="6000" min="1000" step="500">
+                    </div>
+                    <div class="form-group">
+                        <label for="monthly-debts">Monthly Debt Payments ($)</label>
+                        <input type="number" id="monthly-debts" value="1000" min="0" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="proposed-mortgage">Proposed Mortgage Payment ($)</label>
+                        <input type="number" id="proposed-mortgage" value="1500" min="0" step="100">
+                    </div>
+                    <button id="calculate-dti-btn" class="cta-button">Calculate DTI Ratio</button>
                 </div>
-                <div class="testimonial-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "Working with Orion was a total game-changer. It guided us to a home we loved—under budget—and the process felt effortless."
-                        </div>
-                        <div class="testimonial-author">- Sarah & Mike T.</div>
+                <div class="calculator-results">
+                    <div class="result-card">
+                        <h3>Front-End Ratio</h3>
+                        <div class="result-amount" id="front-end-ratio">25%</div>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">(Mortgage ÷ Income)</p>
                     </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "As a first-time buyer, I was overwhelmed. Orion explained every step clearly, negotiated like a master, and got us our home in just 30 days."
-                        </div>
-                        <div class="testimonial-author">- James L.</div>
+                    <div class="result-card">
+                        <h3>Back-End Ratio</h3>
+                        <div class="result-amount" id="back-end-ratio">42%</div>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">(Debts + Mortgage ÷ Income)</p>
                     </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">
-                            "I almost gave up—until Orion stepped in. It surfaced listings I never found online and got our offer accepted *below* asking."
+                    <div class="result-card">
+                        <h3>Lender Preference</h3>
+                        <div class="result-amount" id="lender-preference">Good</div>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">(Based on typical standards)</p>
+                    </div>
+                    <div class="result-breakdown">
+                        <h4>DTI Guidelines</h4>
+                        <div class="breakdown-item">
+                            <span>Ideal Front-End Ratio</span>
+                            <span>≤ 28%</span>
                         </div>
-                        <div class="testimonial-author">- David R.</div>
+                        <div class="breakdown-item">
+                            <span>Ideal Back-End Ratio</span>
+                            <span>≤ 36%</span>
+                        </div>
+                        <div class="breakdown-item">
+                            <span>Maximum Back-End Ratio</span>
+                            <span>≤ 43% (typical)</span>
+                        </div>
+                        <div class="breakdown-item total">
+                            <span>Your Back-End Ratio</span>
+                            <span id="your-back-end">42%</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     
     <!-- CTA Section with Background Image -->
     <section class="cta-section" id="contact">
@@ -1780,6 +1813,67 @@
           popupOverlay.style.display = 'none';
           document.body.style.overflow = 'auto';
         });
+
+            // Calculator Toggle Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const mortgageToggle = document.getElementById('mortgage-toggle');
+        const dtiToggle = document.getElementById('dti-toggle');
+        const mortgageCalc = document.getElementById('mortgage-calculator');
+        const dtiCalc = document.getElementById('dti-calculator');
+        
+        mortgageToggle.addEventListener('click', function() {
+            mortgageCalc.style.display = 'flex';
+            dtiCalc.style.display = 'none';
+            mortgageToggle.className = 'cta-button';
+            dtiToggle.className = 'secondary-button';
+        });
+        
+        dtiToggle.addEventListener('click', function() {
+            mortgageCalc.style.display = 'none';
+            dtiCalc.style.display = 'flex';
+            mortgageToggle.className = 'secondary-button';
+            dtiToggle.className = 'cta-button';
+        });
+        
+        // DTI Calculator Logic
+        document.getElementById('calculate-dti-btn').addEventListener('click', calculateDTI);
+        
+        function calculateDTI() {
+            const monthlyIncome = parseFloat(document.getElementById('monthly-income').value) || 0;
+            const monthlyDebts = parseFloat(document.getElementById('monthly-debts').value) || 0;
+            const proposedMortgage = parseFloat(document.getElementById('proposed-mortgage').value) || 0;
+            
+            if (monthlyIncome <= 0) {
+                alert('Please enter a valid monthly income');
+                return;
+            }
+            
+            // Calculate ratios
+            const frontEndRatio = (proposedMortgage / monthlyIncome) * 100;
+            const backEndRatio = ((monthlyDebts + proposedMortgage) / monthlyIncome) * 100;
+            
+            // Determine lender preference
+            let preference;
+            if (backEndRatio <= 36) {
+                preference = 'Excellent';
+            } else if (backEndRatio <= 43) {
+                preference = 'Good';
+            } else if (backEndRatio <= 50) {
+                preference = 'Marginal';
+            } else {
+                preference = 'Challenging';
+            }
+            
+            // Update the UI
+            document.getElementById('front-end-ratio').textContent = frontEndRatio.toFixed(1) + '%';
+            document.getElementById('back-end-ratio').textContent = backEndRatio.toFixed(1) + '%';
+            document.getElementById('lender-preference').textContent = preference;
+            document.getElementById('your-back-end').textContent = backEndRatio.toFixed(1) + '%';
+        }
+        
+        // Initialize DTI calculator
+        calculateDTI();
+    });
       </script>
       
       <!-- ✅ Chatbase Embed (place once, at the very bottom) -->
@@ -1815,7 +1909,5 @@
         })();
       </script>
       
-    
-    
 </body>
 </html>

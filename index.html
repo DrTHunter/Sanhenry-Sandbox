@@ -1908,31 +1908,31 @@
   });
 </script>
     
- <script>
-      // Toggle button logic for Terms of Service
-      const termsToggle = document.getElementById('termsToggle');
-      const termsAgreed = document.getElementById('termsAgreed');
+<script>
+    // Toggle button logic for Terms of Service
+    const termsToggle = document.getElementById('termsToggle');
+    const termsAgreed = document.getElementById('termsAgreed');
     
-      termsToggle.addEventListener('click', () => {
-        const isAgreed = termsToggle.getAttribute('data-agreed') === 'true';
-        if (isAgreed) {
-          termsToggle.classList.remove('selected');
-          termsToggle.setAttribute('data-agreed', 'false');
-          termsAgreed.value = '';
-        } else {
+    termsToggle.addEventListener('click', () => {
+    const isAgreed = termsToggle.getAttribute('data-agreed') === 'true';
+    if (isAgreed) {
+        termsToggle.classList.remove('selected');
+        termsToggle.setAttribute('data-agreed', 'false');
+        termsAgreed.value = '';
+    } else {
           termsToggle.classList.add('selected');
           termsToggle.setAttribute('data-agreed', 'true');
           termsAgreed.value = 'agreed';
         }
-      });
+    });
 
-  // Prevent form submission unless terms are agreed
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    // Prevent form submission unless terms are agreed
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
     if (termsAgreed.value !== 'agreed') {
       e.preventDefault();
       alert('You must agree to the Terms of Service before submitting.');
     }
-  });
+    });
     <script>
         
     <script>

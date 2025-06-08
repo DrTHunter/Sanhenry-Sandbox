@@ -519,6 +519,18 @@
         .testimonial-author {
             font-weight: 600;
         }
+
+        /* textbox alternative to locations */
+        .toggle-option {
+          padding: 10px;
+          background: #f0f0f0;
+          border: 1px solid #ccc;
+        }
+    
+        .toggle-option.selected {
+          background-color: #4caf50;
+          color: white;
+        }
         
         /* Neighborhoods */
         .neighborhoods {
@@ -1464,34 +1476,18 @@
             <input type="tel" id="phone" name="phone" required>
           </div>
     
-            <div class="form-group">
-              <label>Preferred Locations (check all that apply)</label>
-                <div class="checkbox-group">
-                  <label class="checkbox-item">
-                    Downtown San Antonio
-                    <input type="checkbox" name="locations" value="Downtown San Antonio">
-                  </label>
-                  <label class="checkbox-item">
-                    Alamo Heights
-                    <input type="checkbox" name="locations" value="Alamo Heights">
-                  </label>
-                  <label class="checkbox-item">
-                    Stone Oak
-                    <input type="checkbox" name="locations" value="Stone Oak">
-                  </label>
-                  <label class="checkbox-item">
-                    The Dominion
-                    <input type="checkbox" name="locations" value="The Dominion">
-                  </label>
-                  <label class="checkbox-item">
-                    Northwest San Antonio
-                    <input type="checkbox" name="locations" value="Northwest San Antonio">
-                  </label>
-                  <label class="checkbox-item">
-                    Bulverde / Spring Branch
-                    <input type="checkbox" name="locations" value="Bulverde / Spring Branch">
-                  </label>
-                </div>
+          <div class="form-group">
+            <label>Preferred Locations</label>
+            <div class="toggle-group">
+              <button type="button" class="toggle-option" data-value="Downtown San Antonio">Downtown</button>
+              <button type="button" class="toggle-option" data-value="Alamo Heights">Alamo Heights</button>
+              <button type="button" class="toggle-option" data-value="Stone Oak">Stone Oak</button>
+              <button type="button" class="toggle-option" data-value="The Dominion">The Dominion</button>
+              <button type="button" class="toggle-option" data-value="Northwest San Antonio">NW San Antonio</button>
+              <button type="button" class="toggle-option" data-value="Bulverde / Spring Branch">Bulverde</button>
+            </div>
+            <input type="hidden" name="locations" id="selectedLocations">
+          </div>
     
           <div class="form-group">
             <label for="timeline">Timeline to Move</label>
@@ -1520,6 +1516,29 @@
             <textarea id="message" name="additional" rows="4" style="width: 100%;"></textarea>
           </div>
     
+          <!-- Updated Terms of Service checkbox -->
+          <div class="form-group">
+            <div class="checkbox-group after-text">
+              <label class="checkbox-inline">
+                <input type="checkbox" name="terms" required>
+                I agree to the <a href="https://www.orionhomesearch.com/Terms%20of%20Service.txt" target="_blank">Terms of Service</a>
+              </label>
+            </div>
+          </div>
+    
+          <!-- Added communication consent text -->
+          <p style="font-size: 0.8rem; margin-top: -10px; margin-bottom: 10px;">
+            By submitting this form, you agree to receive communications by email, phone, or text from Orion AI Real Estate. You may opt out at any time.
+          </p>
+    
+          <button type="submit">Send Message <i class="fas fa-paper-plane"></i></button>
+          <div id="successMessage" style="display:none; margin-top: 1em; color: green; font-weight: bold;">
+            Thank you! Your form has been submitted.
+          </div>
+        </form>
+      </div>
+    </div>
+  
           <!-- Updated Terms of Service checkbox -->
             <div class="form-group">
               <div class="checkbox-group after-text">
@@ -1824,6 +1843,27 @@
         });
     </script>
 
+<script>
+  // Toggle button functionality for locations
+  const buttons = document.querySelectorAll('.toggle-option');
+  const hiddenInput = document.getElementById('selectedLocations');
+  let selected = [];
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const value = button.dataset.value;
+      if (selected.includes(value)) {
+        selected = selected.filter(v => v !== value);
+        button.classList.remove('selected');
+      } else {
+        selected.push(value);
+        button.classList.add('selected');
+      }
+      hiddenInput.value = selected.join(', ');
+    });
+  });
+</script>
+    
     <script>
 (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="RfCRY6zG0cFaXP1SpqUgu";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
